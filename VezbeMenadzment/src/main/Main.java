@@ -2,6 +2,8 @@ package main;
 
 import java.util.Scanner;
 
+import geometry.Point;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -68,19 +70,48 @@ public class Main {
 		
 		// ZADATAK 2 - Prestupne godine
 		
-		for(int godina = 2023; godina <=2100; godina += 4) {
-			if(godina == 2023) {
-				godina++;
-			}else if (godina%100 == 0) {
-				if(godina%400 ==0) {
-					System.out.println(godina);
-				}else {
-					continue;
-				}
-			}
-			System.out.println(godina);
-		}
+//		for(int godina = 2023; godina <=2100; godina += 4) {
+//			if(godina == 2023) {
+//				godina++;
+//			}else if (godina%100 == 0) {
+//				if(godina%400 ==0) {
+//					System.out.println(godina);
+//				}else {
+//					continue;
+//				}
+//			}
+//			System.out.println(godina);
+//		}
 		
+		// VEZBE 3 - Osnovne objektnog programiranja
+		int broj = 20;
+		System.out.println(broj);
+		Point p1 = new Point();
+		System.out.println("Vrednost reference: " + p1);
+		System.out.println("Vrednost atributa x objekta na koji pokazuje p1: " + p1.getX());
+		System.out.println("Vrednost atributa y objekta na koji pokazuje p1: " + p1.getY());
+		System.out.println("Vrednost atributa selected objekta na koji pokazuje p1: " 
+		+ p1.isSelected());
+		
+		p1.setX(20);
+		p1.setY(10);
+		System.out.println(p1.getX());
+		Point p2 = new Point();
+		p2.setX(10);
+		p2.setY(10);
+		double udaljenost = p1.distance(p2);
+		System.out.println("Udaljenost je: " + udaljenost);
+		p1 = p2;
+		p2.setX(50);
+		System.out.println(p1.getX());
+		p1.setY(200);
+		System.out.println(p2.getY());
+		
+		//p1 -> x(0), y(0), selected(false) objekat 1
+		//p2 -> x(0), y(0), selected(false) objekat 2
+		//p1=p2 -> objekat 2
+		//p2.setX(50) -> x(50), y(0), selected(false) objekat 2
+		//p1.setY(200) -> x(50), y(200), selected(false) objekat 2
 
 	}
 
