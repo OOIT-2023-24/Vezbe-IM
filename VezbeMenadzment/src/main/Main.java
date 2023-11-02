@@ -1,8 +1,9 @@
 package main;
 
-import java.util.Scanner;
-
+import geometry.Circle;
+import geometry.Line;
 import geometry.Point;
+import geometry.Rectangle;
 
 public class Main {
 
@@ -85,33 +86,53 @@ public class Main {
 		
 		// VEZBE 3 - Osnovne objektnog programiranja
 		int broj = 20;
-		System.out.println(broj);
+		//System.out.println(broj);
 		Point p1 = new Point();
-		System.out.println("Vrednost reference: " + p1);
-		System.out.println("Vrednost atributa x objekta na koji pokazuje p1: " + p1.getX());
-		System.out.println("Vrednost atributa y objekta na koji pokazuje p1: " + p1.getY());
-		System.out.println("Vrednost atributa selected objekta na koji pokazuje p1: " 
-		+ p1.isSelected());
+		//System.out.println("Vrednost reference: " + p1);
+		//System.out.println("Vrednost atributa x objekta na koji pokazuje p1: " + p1.getX());
+		//System.out.println("Vrednost atributa y objekta na koji pokazuje p1: " + p1.getY());
+		//System.out.println("Vrednost atributa selected objekta na koji pokazuje p1: " 
+		//+ p1.isSelected());
 		
 		p1.setX(20);
 		p1.setY(10);
-		System.out.println(p1.getX());
+		//System.out.println(p1.getX());
 		Point p2 = new Point();
 		p2.setX(10);
 		p2.setY(10);
 		double udaljenost = p1.distance(p2);
-		System.out.println("Udaljenost je: " + udaljenost);
-		p1 = p2;
+		//System.out.println("Udaljenost je: " + udaljenost);
 		p2.setX(50);
-		System.out.println(p1.getX());
+		//System.out.println(p1.getX());
 		p1.setY(200);
-		System.out.println(p2.getY());
+		//System.out.println(p2.getY());
 		
 		//p1 -> x(0), y(0), selected(false) objekat 1
 		//p2 -> x(0), y(0), selected(false) objekat 2
 		//p1=p2 -> objekat 2
 		//p2.setX(50) -> x(50), y(0), selected(false) objekat 2
 		//p1.setY(200) -> x(50), y(200), selected(false) objekat 2
+		
+		//Vezbe 4
+		System.out.println("X vrednost objekta na koji pokazuje p1: " + p1.getX());
+		System.out.println("X vrednost objekta na koji pokazuje p2: " + p2.getX());
+		Line l1 = new Line();
+		l1.setStartPoint(p1);
+		p1 = p2;
+		System.out.println("X vrednost objekta na koji pokazuje p1: " + p1.getX());
+		System.out.println("X vrednost objekta na koji pokazuje p2: " + p2.getX());
+		System.out.println("X vrednost objekta na koji startPoint: " + l1.getStartPoint().getX());
+		
+		Rectangle r1 = new Rectangle();
+		Circle c1 = new Circle();
+		
+		System.out.println("Povrsina pravougaonika r1 je: " + r1.area());
+		System.out.println("Povrsina pravougaonika c1 je: " + c1.area());
+		
+		System.out.println(l1.getStartPoint().getY() * c1.getRadius());
+		
+		
+		//System.out.println(l1.length());
 
 	}
 
