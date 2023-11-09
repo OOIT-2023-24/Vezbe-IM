@@ -15,6 +15,11 @@ public class Circle {
 	}
 	
 	@Override
+	public String toString() {
+		return "Center: (" + center.getX() + "," + center.getY() + "), radius = " + radius;
+	}
+	
+	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Circle) {
 			Circle temp = (Circle) o;

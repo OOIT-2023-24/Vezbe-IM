@@ -16,6 +16,12 @@ public class Rectangle {
 	}
 	
 	@Override
+	public String toString() {
+		return "Upper left: (" + upperLeft.getX() + "," + upperLeft.getY() + 
+				"), width = " + width + ",heigth = " + heigth;
+	}
+	
+	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Rectangle) {
 			Rectangle temp = (Rectangle) o;
