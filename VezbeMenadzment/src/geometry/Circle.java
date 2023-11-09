@@ -13,6 +13,17 @@ public class Circle {
 	public double circumference() {
 		return 2*radius*Math.PI;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Circle) {
+			Circle temp = (Circle) o;
+			if(radius == temp.getRadius()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public Point getCenter() {
 		return center;

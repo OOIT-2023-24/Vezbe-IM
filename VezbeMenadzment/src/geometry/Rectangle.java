@@ -14,6 +14,17 @@ public class Rectangle {
 	public int circumference() {
 		return 2 * width + 2 * heigth;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Rectangle) {
+			Rectangle temp = (Rectangle) o;
+			if(width == temp.getWidth() && heigth == temp.getHeigth()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public Point getUpperLeft() {
 		return upperLeft;
