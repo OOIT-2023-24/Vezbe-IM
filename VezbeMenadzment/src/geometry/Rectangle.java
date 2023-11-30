@@ -15,6 +15,15 @@ public class Rectangle {
 		return 2 * width + 2 * heigth;
 	}
 	
+	public boolean contains(int x, int y) {
+		return (x >= upperLeft.getX() && x <= upperLeft.getX() + width)
+				&& (y >= upperLeft.getY() && y <= upperLeft.getY() + heigth);
+	}
+	
+	public boolean contains(Point p) {
+		return contains(p.getX(), p.getY());
+	}
+	
 	@Override
 	public String toString() {
 		return "Upper left: (" + upperLeft.getX() + "," + upperLeft.getY() + 

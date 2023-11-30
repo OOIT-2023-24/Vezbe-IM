@@ -4,7 +4,21 @@ public class Circle {
 
 	private Point center;
 	private int radius;
-	private boolean selected;
+	protected boolean selected;
+	
+	public Circle() {
+		
+	}
+	
+	public Circle(Point center, int radius) {
+		this.center = center;
+		this.radius = radius;
+	}
+	
+	public Circle(Point center, int radius,boolean selected) {
+		this(center,radius);
+		this.selected = selected;
+	}
 	
 	public double area() {
 		return Math.PI*radius*radius;
@@ -12,6 +26,14 @@ public class Circle {
 	
 	public double circumference() {
 		return 2*radius*Math.PI;
+	}
+	
+	public boolean contains(int x, int y) {
+		return center.distance(new Point(x,y)) <= radius;
+	}
+	
+	public boolean contains(Point p) {
+		return contains(p.getX(), p.getY());
 	}
 	
 	@Override
