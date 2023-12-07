@@ -6,4 +6,5 @@
  *
  */
 module VezbeMenadzment {
+	requires java.desktop;
 }
