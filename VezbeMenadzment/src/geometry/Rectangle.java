@@ -27,6 +27,27 @@ public class Rectangle extends Shape {
 	public void draw(Graphics g) {
 		g.drawRect(upperLeft.getX(), upperLeft.getY(), width, heigth);
 	}
+	
+	@Override
+	public int compareTo(Shape o) {
+		if(o instanceof Rectangle) {
+			Rectangle temp = (Rectangle)o;
+			return area() - temp.area();
+		}
+		return 0;
+	}
+	
+	@Override
+	public void moveTo(int x, int y) {
+		upperLeft.moveTo(x, y);
+		
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		upperLeft.moveBy(byX, byY);
+		
+	}
 
 	public int area() {
 		return width * heigth;

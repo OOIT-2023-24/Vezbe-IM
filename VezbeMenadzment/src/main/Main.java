@@ -2,6 +2,7 @@ package main;
 
 import geometry.Circle;
 import geometry.Line;
+import geometry.Moveable;
 import geometry.Point;
 import geometry.Rectangle;
 
@@ -146,7 +147,14 @@ public class Main {
 		p1 = p2; //p1 pokazuje na isti objekat kao i p2
 		System.out.println(p1 == p2);
 		//Object o = new Point(10,10); Tip reference ne mora da bude isti kao tip objekta
-
+		
+		//System.out.println(Moveable.BROJ);
+		// Vezbe 7
+		
+		Circle c1 = new Circle(p1, 50);
+		Circle c2 = new Circle(p2, 60);
+		System.out.println(c1.compareTo(l1));
+		
 	}
 
 }

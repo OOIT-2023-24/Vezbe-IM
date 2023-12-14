@@ -26,6 +26,30 @@ public class Point extends Shape {
 		g.drawLine(x - 3, y, x + 3, y); // Horizontalna linija duzine 6 piksela
 		g.drawLine(x, y - 3, x, y + 3); // Vertikalna linija duzine 6 piksela
 	}
+	
+	@Override
+	public int compareTo(Shape o) {
+		Point coordinateStart = new Point(0,0);
+		if(o instanceof Point) {
+			Point temp = (Point)o;
+			return (int)(distance(coordinateStart) - temp.distance(coordinateStart));
+		}
+		return 0;
+	}
+	
+	
+	@Override
+	public void moveTo(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		x += byX;
+		// isto kao i x = x + byX;
+		y += byY;
+	}
 
 	public double distance(Point p1) {
 		int dx = this.x - p1.getX();
@@ -69,4 +93,5 @@ public class Point extends Shape {
 		this.y = y;
 	}
 
+	
 }

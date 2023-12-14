@@ -29,6 +29,15 @@ public class Donut extends Circle {
 	}
 	
 	@Override
+	public int compareTo(Shape o) {
+		if(o instanceof Donut) {
+			Donut temp = (Donut)o;
+			return (int) (area() - temp.area());
+		}
+		return 0;
+	}
+	
+	@Override
 	public boolean contains(int x, int y) {
 		return super.contains(x, y) && 
 				getCenter().distance(new Point(x,y)) >= innerRadius;
