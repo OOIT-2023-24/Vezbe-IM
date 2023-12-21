@@ -1,10 +1,11 @@
 package main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import geometry.Circle;
 import geometry.Line;
-import geometry.Moveable;
 import geometry.Point;
-import geometry.Rectangle;
 
 public class Main {
 
@@ -137,15 +138,15 @@ public class Main {
 		
 		//VEZBE 5 - Klasa Object i overriding
 		Point p1 = new Point(10,10);
-		System.out.println("Izvrsavanje metode toString() " + p1.toString());
-		System.out.println("Vrednost reference " + p1);
+		//System.out.println("Izvrsavanje metode toString() " + p1.toString());
+		//System.out.println("Vrednost reference " + p1);
 		Line l1 = new Line();
 		l1.setStartPoint(p1);
 		l1.setEndPoint(new Point(15,15));
-		System.out.println("Vrednost reference " + l1);
+		//System.out.println("Vrednost reference " + l1);
 		Point p2 = new Point(10,10);
 		p1 = p2; //p1 pokazuje na isti objekat kao i p2
-		System.out.println(p1 == p2);
+		//System.out.println(p1 == p2);
 		//Object o = new Point(10,10); Tip reference ne mora da bude isti kao tip objekta
 		
 		//System.out.println(Moveable.BROJ);
@@ -153,7 +154,51 @@ public class Main {
 		
 		Circle c1 = new Circle(p1, 50);
 		Circle c2 = new Circle(p2, 60);
-		System.out.println(c1.compareTo(l1));
+		//System.out.println(c1.compareTo(l1));
+		
+		//Vezbe 8
+		
+//		int[] nizBrojeva = new int[5];
+//		nizBrojeva[0] = 4;
+//		nizBrojeva[1] = 5;
+//		nizBrojeva[2] = 6;
+//		nizBrojeva[3] = 7;
+//		nizBrojeva[4] = 8;
+		int[] nizBrojeva = {4,5,6,7,8};
+		for(int i = nizBrojeva.length-1; i>=0; i--) {
+			
+			//System.out.println("Vrednost elementa na indeksu " + i + " je: " + nizBrojeva[i]);
+		}
+		
+		HashMap<String,String> mapa = new HashMap<String,String>();
+		mapa.put("txt", "notepad.exe");
+		mapa.put("dib", "paint.exe");
+		mapa.put("bmp", "paint.exe");
+		mapa.put("rtf", "wordpad.exe");
+		
+		mapa.replace("rtf", "windword.exe");
+		mapa.put("rtf", "wordpad.exe");
+		
+		if(!mapa.containsKey("tif")) {
+			System.out.println("Kljuc tif nije pronadjen!");
+		}
+		
+		if(!mapa.containsKey("ht")) {
+			mapa.put("ht", "hypertrm.exe");
+			System.out.println("Novi key-value par ht:hypertrm.exe je dodat!");
+		}
+		
+		for(Map.Entry<String, String> es : mapa.entrySet()) {
+			System.out.println(es);
+		}
+		
+		if(mapa.containsKey("doc")) {
+			mapa.remove("doc");
+		}else {
+			System.out.println("Kljuc doc nije pronadjen!");
+		}
+		
+		
 		
 	}
 
