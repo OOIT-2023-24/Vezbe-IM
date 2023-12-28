@@ -180,23 +180,33 @@ public class Main {
 		mapa.put("rtf", "wordpad.exe");
 		
 		if(!mapa.containsKey("tif")) {
-			System.out.println("Kljuc tif nije pronadjen!");
+			//System.out.println("Kljuc tif nije pronadjen!");
 		}
 		
 		if(!mapa.containsKey("ht")) {
 			mapa.put("ht", "hypertrm.exe");
-			System.out.println("Novi key-value par ht:hypertrm.exe je dodat!");
+			//System.out.println("Novi key-value par ht:hypertrm.exe je dodat!");
 		}
 		
 		for(Map.Entry<String, String> es : mapa.entrySet()) {
-			System.out.println(es);
+			//System.out.println(es);
 		}
 		
 		if(mapa.containsKey("doc")) {
 			mapa.remove("doc");
 		}else {
-			System.out.println("Kljuc doc nije pronadjen!");
+			//System.out.println("Kljuc doc nije pronadjen!");
 		}
+		
+		try {
+			c1.setRadius(0);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	
+		
+		System.out.println(c1.getRadius());
 		
 		
 		
