@@ -1,27 +1,30 @@
 package gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
 import javax.swing.JCheckBox;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class FrmIgrac extends JFrame {
 
@@ -71,10 +74,53 @@ public class FrmIgrac extends JFrame {
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
 		JButton btnDijalog = new JButton("Dijalog Igrac");
+		btnDijalog.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Dialog dlg = new Dialog();
+				dlg.setLocationRelativeTo(null); //Centiranje dijaloga na ekranu
+				dlg.setVisible(true);
+				if(dlg.flagOkay()) {
+					addToListNoDuplicates
+					(dlg.getTextFieldIme() + " " + dlg.getTextFieldPrezime());
+				}
+				
+			}
+		});
 		btnDijalog.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelSouth.add(btnDijalog);
 		
+		JList list = new JList();
+		list.setModel(dlm);
+		
 		JButton btnModifikacija = new JButton("Modifikacija");
+		btnModifikacija.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selektovaniIndeks  = list.getSelectedIndex();
+				if(selektovaniIndeks == -1) {
+					JOptionPane.showMessageDialog(null, "Prvo selektujte element za modifikaciju iz liste!");
+				}else {
+					String temp = dlm.get(selektovaniIndeks);
+					String[] imePrezime = temp.split(" ");
+					Dialog dlg = new Dialog();
+					dlg.setTextFieldIme(imePrezime[0]);
+					try {
+						dlg.setTextFieldPrezime(imePrezime[1]);
+					} catch (Exception e2) {
+						
+					}
+					
+					dlg.setLocationRelativeTo(null);
+					dlg.setVisible(true);
+					if(dlg.flagOkay()) {
+						dlm.add(selektovaniIndeks, dlg.getTextFieldIme() + " " + 
+					dlg.getTextFieldPrezime());
+						dlm.remove(selektovaniIndeks+1);
+					}
+				}
+			}
+		});
 		btnModifikacija.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelSouth.add(btnModifikacija);
 		
@@ -121,8 +167,6 @@ public class FrmIgrac extends JFrame {
 		gbc_scrollPane.gridy = 1;
 		panelCenter.add(scrollPane, gbc_scrollPane);
 		
-		JList list = new JList();
-		list.setModel(dlm);
 		scrollPane.setViewportView(list);
 		
 		JLabel lblDruga = new JLabel("Dusan Tadic");
@@ -175,6 +219,16 @@ public class FrmIgrac extends JFrame {
 		panelCenter.add(lblTreca, gbc_lblTreca);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+		chckbxNewCheckBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(chckbxNewCheckBox.isSelected()) {
+					textField.setEnabled(true);
+				}else {
+					textField.setEnabled(false);
+				}
+			}
+		});
 		chckbxNewCheckBox.setBackground(Color.PINK);
 		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
 		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
@@ -183,6 +237,23 @@ public class FrmIgrac extends JFrame {
 		panelCenter.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
 		
 		textField = new JTextField();
+		textField.setEnabled(false);
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char temp = e.getKeyChar();
+				if(!((temp >= 'A' && temp <='Z') || (temp >= 'a' && temp <= 'z')
+						|| temp == KeyEvent.VK_ENTER || temp == KeyEvent.VK_SPACE
+						|| temp == KeyEvent.VK_BACK_SPACE)) {
+					e.consume();
+				}else {
+					if(temp == KeyEvent.VK_ENTER) {
+						addToListNoDuplicates(textField.getText());
+						textField.setText("");
+					}
+				}
+			}
+		});
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -200,6 +271,7 @@ public class FrmIgrac extends JFrame {
 		panelCenter.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Vlahovic", "Tadic", "Mitrovic"}));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
