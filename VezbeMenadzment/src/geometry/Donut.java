@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Donut extends Circle {
@@ -26,6 +27,13 @@ public class Donut extends Circle {
 		super.draw(g);
 		g.drawOval(getCenter().getX()-innerRadius, getCenter().getY()-innerRadius, 
 				innerRadius*2, innerRadius*2);
+		if(selected) {
+			g.setColor(Color.BLUE);
+			g.drawRect(getCenter().getX()-innerRadius-3, getCenter().getY()-3, 6, 6);
+			g.drawRect(getCenter().getX()+innerRadius-3, getCenter().getY()-3, 6, 6);
+			g.drawRect(getCenter().getX()-3, getCenter().getY()-innerRadius-3, 6, 6);
+			g.drawRect(getCenter().getX()-3, getCenter().getY()+innerRadius-3, 6, 6);
+		}
 	}
 	
 	@Override
